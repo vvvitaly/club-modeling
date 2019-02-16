@@ -1,0 +1,24 @@
+{
+    "name": "vvvitaly/club-model",
+    "description": "Testing club modeling",
+    "minimum-stability": "dev",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Vitaly Volkov",
+            "email": "volkov.vitaly.v@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Club\\": "src/",
+            "tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": ">=7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0"
+    }
+}
