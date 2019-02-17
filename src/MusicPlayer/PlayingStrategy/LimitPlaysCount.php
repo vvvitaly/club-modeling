@@ -46,6 +46,9 @@ class LimitPlaysCount implements PlayingStrategy
             return null;
         }
 
-        return $this->wrapped->playComposition($playlist);
+        $next = $this->wrapped->playComposition($playlist);
+        $this->playsCount++;
+
+        return $next;
     }
 }
