@@ -2,7 +2,7 @@
 
 namespace Club\Club\Generic\MusicPlayer;
 
-use Club\Club\NoMusicLoadedException;
+use Club\Music\Composition;
 
 /**
  * Club music player
@@ -11,8 +11,14 @@ interface MusicPlayer
 {
     /**
      * Start music playing
-     *
-     * @throws NoMusicLoadedException
      */
     public function startPlaying(): void;
+
+    /**
+     * Get current playing composition
+     *
+     * @return Composition
+     * @throws PlayerStoppedException
+     */
+    public function getCurrentComposition(): Composition;
 }

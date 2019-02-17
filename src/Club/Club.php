@@ -21,8 +21,6 @@ interface Club
 
     /**
      * Play music in the club. Throws NoMusicLoadedException if there are no music was loaded.
-     *
-     * @throws NoMusicLoadedException
      */
     public function playMusic(): void;
 }

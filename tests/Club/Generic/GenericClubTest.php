@@ -76,20 +76,4 @@ class GenericClubTest extends TestCase
 
         $club->playMusic();
     }
-
-    public function testPlayMusicWhenNoMusic(): void
-    {
-        $faceControl = $this->createMock(FaceControlStrategy::class);
-        $danceFloor = $this->createMock(DanceFloor::class);
-
-        $musicPlayer = $this->createMock(MusicPlayer::class);
-        $musicPlayer->expects(self::once())
-            ->method('startPlaying')
-            ->willThrowException(new NoMusicLoadedException('test'));
-
-        $club = new GenericClub($faceControl, $danceFloor, $musicPlayer);
-
-        $this->expectException(NoMusicLoadedException::class);
-        $club->playMusic();
-    }
 }
