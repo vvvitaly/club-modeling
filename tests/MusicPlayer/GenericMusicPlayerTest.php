@@ -3,6 +3,7 @@
 namespace tests\MusicPlayer;
 
 use Club\MusicPlayer\GenericMusicPlayer;
+use Club\MusicPlayer\MusicListener;
 use Club\MusicPlayer\PlayingStrategy\PlayingStrategy;
 use Club\Music\Composition;
 use Club\Music\Genre;
@@ -29,6 +30,32 @@ class GenericMusicPlayerTest extends TestCase
             );
 
         $player = new GenericMusicPlayer($playlist, $playingStrategy);
+
+        $player->startPlaying();
+    }
+
+    public function testStartPlayingShouldNotifyListeners()
+    {
+        $playlist = new Playlist();
+        $current = new Composition('some song', Genre::popMusic());
+
+        $playingStrategy = $this->createMock(PlayingStrategy::class);
+        $playingStrategy->method('playComposition')->willReturnOnConsecutiveCalls($current, null);
+
+        $listener1 = $this->createMock(MusicListener::class);
+        $listener1->expects(self::once())
+            ->method('updateListeningComposition')
+            ->with(self::identicalTo($current));
+
+        $listener2 = $this->createMock(MusicListener::class);
+        $listener2->expects(self::once())
+            ->method('updateListeningComposition')
+            ->with(self::identicalTo($current));
+
+        $player = new GenericMusicPlayer($playlist, $playingStrategy);
+
+        $player->addListener($listener1);
+        $player->addListener($listener2);
 
         $player->startPlaying();
     }

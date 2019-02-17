@@ -2,10 +2,13 @@
 
 namespace Club\Persons;
 
+use Club\Music\Composition;
+use Club\MusicPlayer\MusicListener;
+
 /**
  * Club visitor
  */
-final class Person
+final class Person implements MusicListener
 {
     /**
      * @var PersonId
@@ -43,5 +46,13 @@ final class Person
     public function getGender(): Gender
     {
         return $this->gender;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function updateListeningComposition(Composition $composition): void
+    {
+        // TODO: Implement updateListeningComposition() method.
     }
 }

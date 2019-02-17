@@ -21,4 +21,13 @@ interface MusicPlayer
      * @throws PlayerStoppedException
      */
     public function getCurrentComposition(): Composition;
+
+    /**
+     * Add new music listener
+     *
+     * @param MusicListener $listener
+     *
+     * @return void
+     */
+    public function addListener(MusicListener $listener): void;
 }

@@ -57,6 +57,7 @@ final class GenericClub implements Club
         }
 
         $this->danceFloor->letPersonIn($person);
+        $this->musicPlayer->addListener($person);
     }
 
     /**

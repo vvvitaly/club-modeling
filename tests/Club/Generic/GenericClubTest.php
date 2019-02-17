@@ -21,8 +21,6 @@ class GenericClubTest extends TestCase
 {
     public function testLetPersonIn(): void
     {
-        $musicPlayer = $this->createMock(MusicPlayer::class);
-
         $person = new Person(new PersonId('test'), Gender::male());
 
         $faceControl = $this->createMock(FaceControlStrategy::class);
@@ -34,6 +32,11 @@ class GenericClubTest extends TestCase
         $danceFloor = $this->createMock(DanceFloor::class);
         $danceFloor->expects(self::once())
             ->method('letPersonIn')
+            ->with(self::identicalTo($person));
+
+        $musicPlayer = $this->createMock(MusicPlayer::class);
+        $musicPlayer->expects(self::once())
+            ->method('addListener')
             ->with(self::identicalTo($person));
 
         $club = new GenericClub($faceControl, $danceFloor, $musicPlayer);
@@ -56,6 +59,9 @@ class GenericClubTest extends TestCase
         $danceFloor = $this->createMock(DanceFloor::class);
         $danceFloor->expects(self::never())
             ->method('letPersonIn');
+
+        $musicPlayer->expects(self::never())
+            ->method('addListener');
 
         $club = new GenericClub($faceControl, $danceFloor, $musicPlayer);
 
