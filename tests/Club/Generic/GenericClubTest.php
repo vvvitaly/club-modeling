@@ -6,6 +6,7 @@ use Club\Club\Generic\FaceControl\FaceControlStrategy;
 use Club\Club\Generic\GenericClub;
 use Club\MusicPlayer\MusicPlayer;
 use Club\Club\NoEntryException;
+use Club\Persons\DanceStylesCollection;
 use Club\Persons\Gender;
 use Club\Persons\Person;
 use Club\Persons\PersonId;
@@ -18,7 +19,7 @@ class GenericClubTest extends TestCase
 {
     public function testLetPersonIn(): void
     {
-        $person = new Person(new PersonId('test'), Gender::male());
+        $person = new Person(new PersonId('test'), Gender::male(), new DanceStylesCollection());
 
         $faceControl = $this->createMock(FaceControlStrategy::class);
         $faceControl->expects(self::once())
@@ -40,7 +41,7 @@ class GenericClubTest extends TestCase
     {
         $musicPlayer = $this->createMock(MusicPlayer::class);
 
-        $person = new Person(new PersonId('test'), Gender::male());
+        $person = new Person(new PersonId('test'), Gender::male(), new DanceStylesCollection());
 
         $faceControl = $this->createMock(FaceControlStrategy::class);
         $faceControl->expects(self::once())

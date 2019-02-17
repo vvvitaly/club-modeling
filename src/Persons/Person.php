@@ -4,6 +4,8 @@ namespace Club\Persons;
 
 use Club\Music\Composition;
 use Club\MusicPlayer\MusicListener;
+use Club\Persons\States\DancingState;
+use Club\Persons\States\DrinkingState;
 use Club\Persons\States\PersonState;
 use Club\Persons\States\WaitingState;
 
@@ -28,15 +30,23 @@ final class Person implements MusicListener
     private $state;
 
     /**
+     * @var DanceStylesCollection
+     */
+    private $dances;
+
+    /**
      * Person constructor.
      *
      * @param PersonId $id
      * @param Gender $gender
+     * @param DanceStylesCollection $dances
      */
-    public function __construct(PersonId $id, Gender $gender)
+    public function __construct(PersonId $id, Gender $gender, DanceStylesCollection $dances)
     {
         $this->id = $id;
         $this->gender = $gender;
+        $this->dances = $dances;
+
         $this->state = new WaitingState();
     }
 
@@ -61,6 +71,19 @@ final class Person implements MusicListener
      */
     public function updateListeningComposition(Composition $composition): void
     {
-        // TODO: Implement updateListeningComposition() method.
+        $dance = $this->dances->getDanceForMusic($composition->getGenre());
+        if ($dance) {
+            $this->state = new DancingState($dance);
+        } else {
+            $this->state = new DrinkingState();
+        }
+    }
+
+    /**
+     * @return PersonState
+     */
+    public function getState(): PersonState
+    {
+        return $this->state;
     }
 }
