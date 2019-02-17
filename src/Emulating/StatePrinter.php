@@ -27,7 +27,6 @@ use Club\Persons\States\DancingState;
 use Club\Persons\States\DrinkingState;
 use Club\Persons\States\PersonState;
 use Club\Persons\States\WaitingState;
-use SplObjectStorage;
 
 /**
  * Class StatePrinter
@@ -35,22 +34,22 @@ use SplObjectStorage;
 class StatePrinter implements Visitor
 {
     /**
-     * @var SplObjectStorage
+     * @var array
      */
     private static $genres;
 
     /**
-     * @var SplObjectStorage
+     * @var array
      */
     private static $styles;
 
     /**
-     * @var SplObjectStorage
+     * @var array
      */
     private static $bodyParts;
 
     /**
-     * @var SplObjectStorage
+     * @var array
      */
     private static $movements;
 
@@ -61,7 +60,7 @@ class StatePrinter implements Visitor
     {
         $persons = $club->getPersons();
 
-        echo 'Сейчас в клубе ' . iterator_count($persons) . PHP_EOL;
+        echo 'Сейчас в клубе ' . iterator_count($persons) . ' человек(а)';
 
         $this->visitMusicPlayer($club->getMusicPlayer());
         foreach ($persons as $person) {
@@ -82,9 +81,9 @@ class StatePrinter implements Visitor
 
         if ($currentMusic) {
             $genre = self::getGenreText($currentMusic->getGenre());
-            echo 'Играет: ' . $currentMusic->getTitle() . " ({$genre})" . PHP_EOL;
+            echo ', играет: ' . $currentMusic->getTitle() . " ({$genre})" . PHP_EOL;
         } else {
-            echo 'Пока что тихо...' . PHP_EOL;
+            echo ', пока что тихо...' . PHP_EOL;
         }
     }
 
@@ -121,7 +120,7 @@ class StatePrinter implements Visitor
             $danceName = self::getDanceText($dance);
 
             echo "танцует {$danceName}: ";
-            foreach ($dance->getMovementsSequence() as $movement) {
+            foreach ($dance->getMovementsSequence()->toArray() as $movement) {
                 $this->visitDancingMovement($movement);
             }
             echo PHP_EOL;
@@ -136,7 +135,7 @@ class StatePrinter implements Visitor
         $bodyPart = self::getBodyPartName($movement->getBodyPart());
         $movement = self::getMovementName($movement->getMovement());
 
-        echo $bodyPart . ' - ' . $movement . ';';
+        echo $bodyPart . ' - ' . $movement . '; ';
     }
 
     /**
@@ -147,13 +146,20 @@ class StatePrinter implements Visitor
     private static function getGenreText(Genre $genre): string
     {
         if (!self::$genres) {
-            self::$genres = new SplObjectStorage();
-            self::$genres[Genre::popMusic()] = 'Pop music';
-            self::$genres[Genre::electroHouse()] = 'Electrohouse';
-            self::$genres[Genre::rnb()] = 'RnB';
+            self::$genres = [
+                [Genre::popMusic(), 'Pop music'],
+                [Genre::electroHouse(), 'Electrohouse'],
+                [Genre::rnb(), 'RnB'],
+            ];
         }
 
-        return (string)self::$genres[$genre];
+        foreach (self::$genres as [$knownGenre, $name]) {
+            if ($knownGenre->isEquals($genre)) {
+                return $name;
+            }
+        }
+
+        return '';
     }
 
     /**
@@ -164,12 +170,13 @@ class StatePrinter implements Visitor
     private static function getDanceText(DanceStyle $style): string
     {
         if (!self::$styles) {
-            self::$styles = new SplObjectStorage();
-            self::$styles[HipHop::class] = 'хип-хоп';
-            self::$styles[Rnb::class] = 'рнб';
-            self::$styles[ElectroDance::class] = 'Electrodance';
-            self::$styles[House::class] = 'house';
-            self::$styles[PopMusicDance::class] = 'под поп-музыку';
+            self::$styles = [
+                HipHop::class => 'хип-хоп',
+                Rnb::class => 'рнб',
+                ElectroDance::class => 'Electrodance',
+                House::class => 'house',
+                PopMusicDance::class => 'под поп-музыку',
+            ];
         }
 
         return (string)self::$styles[get_class($style)];
@@ -183,14 +190,21 @@ class StatePrinter implements Visitor
     private static function getBodyPartName(BodyPart $bodyPart): string
     {
         if (!self::$bodyParts) {
-            self::$bodyParts = new SplObjectStorage();
-            self::$bodyParts[BodyPart::body()] = 'тело';
-            self::$bodyParts[BodyPart::arms()] = 'руки';
-            self::$bodyParts[BodyPart::legs()] = 'ноги';
-            self::$bodyParts[BodyPart::head()] = 'голова';
+            self::$bodyParts = [
+                [BodyPart::body(), 'тело'],
+                [BodyPart::arms(), 'руки'],
+                [BodyPart::legs(), 'ноги'],
+                [BodyPart::head(), 'голова'],
+            ];
         }
 
-        return (string)self::$bodyParts[$bodyPart];
+        foreach (self::$bodyParts as [$knownPart, $name]) {
+            if ($knownPart->isEquals($bodyPart)) {
+                return $name;
+            }
+        }
+
+        return '';
     }
 
     /**
@@ -201,13 +215,14 @@ class StatePrinter implements Visitor
     private static function getMovementName(Movement $movement): string
     {
         if (!self::$movements) {
-            self::$movements = new SplObjectStorage();
-            self::$movements[BackAndForthWiggle::class] = 'вперед-назад';
-            self::$movements[BarelyMoving::class] = 'почти без движения';
-            self::$movements[HalfBentLimbs::class] = 'полусогнуты';
-            self::$movements[RhythmMovement::class] = 'движение в ритме';
-            self::$movements[Rotating::class] = 'вращение';
-            self::$movements[SmoothMotion::class] = 'плавные движения';
+            self::$movements = [
+                BackAndForthWiggle::class => 'вперед-назад',
+                BarelyMoving::class => 'почти без движения',
+                HalfBentLimbs::class => 'полусогнуты',
+                RhythmMovement::class => 'движение в ритме',
+                Rotating::class => 'вращение',
+                SmoothMotion::class => 'плавные движения',
+            ];
         }
 
         return (string)self::$movements[get_class($movement)];

@@ -28,6 +28,16 @@ final class BodyPart
     }
 
     /**
+     * @param BodyPart $other
+     *
+     * @return bool
+     */
+    public function isEquals(BodyPart $other): bool
+    {
+        return $this->partName === $other->partName;
+    }
+
+    /**
      * @return bool
      */
     public function isBody(): bool

@@ -27,6 +27,16 @@ final class Genre
     }
 
     /**
+     * @param Genre $other
+     *
+     * @return bool
+     */
+    public function isEquals(Genre $other): bool
+    {
+        return $this->name === $other->name;
+    }
+
+    /**
      * @return bool
      */
     public function isRnb(): bool
