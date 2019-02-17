@@ -5,7 +5,7 @@ namespace Club\Persons;
 /**
  * Some generic person ID
  */
-class PersonId
+final class PersonId
 {
     /**
      * @var string

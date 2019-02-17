@@ -5,7 +5,7 @@ namespace Club\Persons;
 /**
  * Club visitor
  */
-class Person
+final class Person
 {
     /**
      * @var PersonId

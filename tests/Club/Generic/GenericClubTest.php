@@ -23,7 +23,7 @@ class GenericClubTest extends TestCase
     {
         $musicPlayer = $this->createMock(MusicPlayer::class);
 
-        $person = new Person(new PersonId('test'), Gender::male(), new StylesCollection());
+        $person = new Person(new PersonId('test'), Gender::male());
 
         $faceControl = $this->createMock(FaceControlStrategy::class);
         $faceControl->expects(self::once())
@@ -45,7 +45,7 @@ class GenericClubTest extends TestCase
     {
         $musicPlayer = $this->createMock(MusicPlayer::class);
 
-        $person = new Person(new PersonId('test'), Gender::male(), new StylesCollection());
+        $person = new Person(new PersonId('test'), Gender::male());
 
         $faceControl = $this->createMock(FaceControlStrategy::class);
         $faceControl->expects(self::once())
