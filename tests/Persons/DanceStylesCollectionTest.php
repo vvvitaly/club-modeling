@@ -3,6 +3,7 @@
 namespace tests\Persons;
 
 use Club\Dances\Styles\DanceStyle;
+use Club\Dances\Styles\Movements\MovementsSequence;
 use Club\Music\Genre;
 use Club\Persons\DanceStylesCollection;
 use PHPUnit\Framework\TestCase;
@@ -56,6 +57,19 @@ class DanceStylesCollectionTest extends TestCase
             public function canDanceToMusic(Genre $musicGenre): bool
             {
                 return $this->isCanDance;
+            }
+
+            /**
+             * @inheritDoc
+             */
+            public function getMovementsSequence(): MovementsSequence
+            {
+                return new class implements MovementsSequence {
+                    public function toArray(): array
+                    {
+                        return [];
+                    }
+                };
             }
         };
     }
