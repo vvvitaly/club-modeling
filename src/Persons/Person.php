@@ -4,6 +4,8 @@ namespace Club\Persons;
 
 use Club\Music\Composition;
 use Club\MusicPlayer\MusicListener;
+use Club\Persons\States\PersonState;
+use Club\Persons\States\WaitingState;
 
 /**
  * Club visitor
@@ -21,6 +23,11 @@ final class Person implements MusicListener
     private $gender;
 
     /**
+     * @var PersonState
+     */
+    private $state;
+
+    /**
      * Person constructor.
      *
      * @param PersonId $id
@@ -30,6 +37,7 @@ final class Person implements MusicListener
     {
         $this->id = $id;
         $this->gender = $gender;
+        $this->state = new WaitingState();
     }
 
     /**

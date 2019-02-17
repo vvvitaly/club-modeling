@@ -2,16 +2,13 @@
 
 namespace tests\Club\Generic;
 
-use Club\Club\Generic\DanceFloor\DanceFloor;
 use Club\Club\Generic\FaceControl\FaceControlStrategy;
 use Club\Club\Generic\GenericClub;
 use Club\MusicPlayer\MusicPlayer;
 use Club\Club\NoEntryException;
-use Club\Club\NoMusicLoadedException;
 use Club\Persons\Gender;
 use Club\Persons\Person;
 use Club\Persons\PersonId;
-use Club\Persons\StylesCollection;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -29,17 +26,12 @@ class GenericClubTest extends TestCase
             ->with(self::identicalTo($person))
             ->willReturn(true);
 
-        $danceFloor = $this->createMock(DanceFloor::class);
-        $danceFloor->expects(self::once())
-            ->method('letPersonIn')
-            ->with(self::identicalTo($person));
-
         $musicPlayer = $this->createMock(MusicPlayer::class);
         $musicPlayer->expects(self::once())
             ->method('addListener')
             ->with(self::identicalTo($person));
 
-        $club = new GenericClub($faceControl, $danceFloor, $musicPlayer);
+        $club = new GenericClub($faceControl, $musicPlayer);
 
         $club->letPersonIn($person);
     }
@@ -56,14 +48,10 @@ class GenericClubTest extends TestCase
             ->with(self::identicalTo($person))
             ->willReturn(false);
 
-        $danceFloor = $this->createMock(DanceFloor::class);
-        $danceFloor->expects(self::never())
-            ->method('letPersonIn');
-
         $musicPlayer->expects(self::never())
             ->method('addListener');
 
-        $club = new GenericClub($faceControl, $danceFloor, $musicPlayer);
+        $club = new GenericClub($faceControl, $musicPlayer);
 
         $this->expectException(NoEntryException::class);
         $club->letPersonIn($person);
@@ -72,13 +60,12 @@ class GenericClubTest extends TestCase
     public function testPlayMusic(): void
     {
         $faceControl = $this->createMock(FaceControlStrategy::class);
-        $danceFloor = $this->createMock(DanceFloor::class);
 
         $musicPlayer = $this->createMock(MusicPlayer::class);
         $musicPlayer->expects(self::once())
             ->method('startPlaying');
 
-        $club = new GenericClub($faceControl, $danceFloor, $musicPlayer);
+        $club = new GenericClub($faceControl, $musicPlayer);
 
         $club->playMusic();
     }
