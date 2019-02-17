@@ -2,12 +2,13 @@
 
 namespace Club\MusicPlayer;
 
+use Club\Infrastructure\Visitable;
 use Club\Music\Composition;
 
 /**
  * Club music player
  */
-interface MusicPlayer
+interface MusicPlayer extends Visitable
 {
     /**
      * Start music playing

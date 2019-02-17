@@ -2,6 +2,7 @@
 
 namespace Club\MusicPlayer;
 
+use Club\Infrastructure\Visitor;
 use Club\MusicPlayer\PlayingStrategy\PlayingStrategy;
 use Club\Music\Composition;
 use Club\Music\Playlist;
@@ -79,6 +80,14 @@ final class GenericMusicPlayer implements MusicPlayer
         if ($this->currentComposition) {
             $listener->updateListeningComposition($this->currentComposition);
         }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function accept(Visitor $visitor): void
+    {
+        $visitor->visitMusicPlayer($this);
     }
 
     /**

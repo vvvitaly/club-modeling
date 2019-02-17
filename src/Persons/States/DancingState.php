@@ -9,6 +9,8 @@ use Club\Dances\Styles\DanceStyle;
  */
 class DancingState implements PersonState
 {
+    use VisitableTrait;
+
     /**
      * @var DanceStyle
      */

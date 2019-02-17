@@ -10,5 +10,5 @@ interface Visitable
     /**
      * @param Visitor $visitor
      */
-    public function accept(Visitor $visitor);
+    public function accept(Visitor $visitor): void;
 }

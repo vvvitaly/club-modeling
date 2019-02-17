@@ -2,9 +2,11 @@
 
 namespace Club\Persons\States;
 
+use Club\Infrastructure\Visitable;
+
 /**
  * Person state
  */
-interface PersonState
+interface PersonState extends Visitable
 {
 }

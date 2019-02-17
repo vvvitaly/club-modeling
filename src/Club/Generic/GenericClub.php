@@ -3,8 +3,8 @@
 namespace Club\Club\Generic;
 
 use Club\Club\Club;
-use Club\Club\Generic\DanceFloor\DanceFloor;
 use Club\Club\Generic\FaceControl\FaceControlStrategy;
+use Club\Infrastructure\Visitor;
 use Club\MusicPlayer\MusicPlayer;
 use Club\Club\NoEntryException;
 use Club\Persons\Person;
@@ -65,5 +65,29 @@ final class GenericClub implements Club
     public function playMusic(): void
     {
         $this->musicPlayer->startPlaying();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function accept(Visitor $visitor): void
+    {
+        $visitor->visitClub($this);
+    }
+
+    /**
+     * @return MusicPlayer
+     */
+    public function getMusicPlayer(): MusicPlayer
+    {
+        return $this->musicPlayer;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPersons(): \Traversable
+    {
+        return $this->visitors;
     }
 }

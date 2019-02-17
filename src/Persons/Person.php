@@ -2,6 +2,8 @@
 
 namespace Club\Persons;
 
+use Club\Infrastructure\Visitable;
+use Club\Infrastructure\Visitor;
 use Club\Music\Composition;
 use Club\MusicPlayer\MusicListener;
 use Club\Persons\States\DancingState;
@@ -12,7 +14,7 @@ use Club\Persons\States\WaitingState;
 /**
  * Club visitor
  */
-final class Person implements MusicListener
+final class Person implements MusicListener, Visitable
 {
     /**
      * @var PersonId
@@ -85,5 +87,13 @@ final class Person implements MusicListener
     public function getState(): PersonState
     {
         return $this->state;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function accept(Visitor $visitor): void
+    {
+        $visitor->visitPerson($this);
     }
 }

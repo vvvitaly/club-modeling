@@ -2,12 +2,14 @@
 
 namespace Club\Club;
 
+use Club\Infrastructure\Visitable;
+use Club\MusicPlayer\MusicPlayer;
 use Club\Persons\Person;
 
 /**
  * Club
  */
-interface Club
+interface Club extends Visitable
 {
     /**
      * Let some person in. Throws NoEntryException if no entry allowed.
@@ -23,4 +25,16 @@ interface Club
      * Play music in the club. Throws NoMusicLoadedException if there are no music was loaded.
      */
     public function playMusic(): void;
+
+    /**
+     * @return MusicPlayer
+     */
+    public function getMusicPlayer(): MusicPlayer;
+
+    /**
+     * Get club visitors
+     *
+     * @return \Traversable
+     */
+    public function getPersons(): \Traversable;
 }

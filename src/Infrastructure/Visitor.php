@@ -3,6 +3,7 @@
 namespace Club\Infrastructure;
 
 use Club\Club\Club;
+use Club\Dances\Styles\Movements\DanceMovement;
 use Club\MusicPlayer\MusicPlayer;
 use Club\Persons\Person;
 use Club\Persons\States\PersonState;
@@ -31,4 +32,9 @@ interface Visitor
      * @param PersonState $personState
      */
     public function visitPersonState(PersonState $personState): void;
+
+    /**
+     * @param DanceMovement $movement
+     */
+    public function visitDancingMovement(DanceMovement $movement): void;
 }
