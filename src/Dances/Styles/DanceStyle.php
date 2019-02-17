@@ -2,6 +2,7 @@
 
 namespace Club\Dances\Styles;
 
+use Club\Dances\Styles\Movements\MovementsSequence;
 use Club\Music\Genre;
 
 /**
@@ -9,6 +10,13 @@ use Club\Music\Genre;
  */
 interface DanceStyle
 {
+    /**
+     * Get movements for this style.
+     *
+     * @return MovementsSequence
+     */
+    public function getMovementsSequence(): MovementsSequence;
+
     /**
      * Check if this style can dance to music genre
      *
