@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
  */
 class CompositionTest extends TestCase
 {
-    public function testCreation()
+    public function testCreation(): void
     {
         $genre = Genre::rnb();
         $composition = new Composition('some name', $genre);
