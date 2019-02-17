@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Club\Club\Generic\MusicPlayer;
+namespace Club\MusicPlayer;
 
 use Club\Music\Composition;
 

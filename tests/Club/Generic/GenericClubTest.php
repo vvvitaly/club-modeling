@@ -5,7 +5,7 @@ namespace tests\Club\Generic;
 use Club\Club\Generic\DanceFloor\DanceFloor;
 use Club\Club\Generic\FaceControl\FaceControlStrategy;
 use Club\Club\Generic\GenericClub;
-use Club\Club\Generic\MusicPlayer\MusicPlayer;
+use Club\MusicPlayer\MusicPlayer;
 use Club\Club\NoEntryException;
 use Club\Club\NoMusicLoadedException;
 use Club\Persons\Gender;

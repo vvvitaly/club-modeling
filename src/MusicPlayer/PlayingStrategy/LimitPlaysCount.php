@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Club\Club\Generic\MusicPlayer\PlayingStrategy;
+namespace Club\MusicPlayer\PlayingStrategy;
 
 use Club\Music\Composition;
 use Club\Music\Playlist;

@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace tests\Club\Generic\MusicPlayer;
+namespace tests\MusicPlayer;
 
-use Club\Club\Generic\MusicPlayer\GenericMusicPlayer;
-use Club\Club\Generic\MusicPlayer\PlayingStrategy\PlayingStrategy;
+use Club\MusicPlayer\GenericMusicPlayer;
+use Club\MusicPlayer\PlayingStrategy\PlayingStrategy;
 use Club\Music\Composition;
 use Club\Music\Genre;
 use Club\Music\Playlist;
