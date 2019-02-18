@@ -17,7 +17,7 @@ class EmulatingPlayingTrackStrategy implements PlayingStrategy
     private $wrapped;
 
     /**
-     * @var int playing duration in microseconds
+     * @var int playing duration in seconds
      */
     private $duration;
 
@@ -44,7 +44,7 @@ class EmulatingPlayingTrackStrategy implements PlayingStrategy
     public function playComposition(Playlist $playlist): ?Composition
     {
         if (!$this->isFirstTrack) {
-            usleep($this->duration);
+            usleep($this->duration * 1000000);
         }
         $this->isFirstTrack = false;
         return $this->wrapped->playComposition($playlist);
