@@ -5,10 +5,28 @@ namespace Club\Dances\Styles\Movements;
 /**
  * Dance movements
  */
-interface MovementsSequence
+class MovementsSequence
 {
+    /**
+     * @var DanceMovement[]
+     */
+    private $movements;
+
+    /**
+     * MovementsCollection constructor.
+     *
+     * @param DanceMovement ...$danceMovements
+     */
+    public function __construct(DanceMovement ...$danceMovements)
+    {
+        $this->movements = $danceMovements;
+    }
+
     /**
      * @return DanceMovement[]
      */
-    public function toArray(): array;
+    public function toArray(): array
+    {
+        return $this->movements;
+    }
 }

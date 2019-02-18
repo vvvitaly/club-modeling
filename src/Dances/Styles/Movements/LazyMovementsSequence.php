@@ -7,7 +7,7 @@ use Club\Dances\Styles\DanceStyle;
 /**
  * Load movements via MovementsFactory
  */
-class LazyMovementsSequence implements MovementsSequence
+class LazyMovementsSequence extends MovementsSequence
 {
     /**
      * @var DanceStyle
@@ -21,6 +21,8 @@ class LazyMovementsSequence implements MovementsSequence
      */
     public function __construct(DanceStyle $dance)
     {
+        parent::__construct();
+
         $this->dance = $dance;
     }
 
