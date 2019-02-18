@@ -46,8 +46,6 @@ final class Emulator
         $musicPlayer = $this->createMusicPlayer();
         $club = $this->createClub($musicPlayer);
 
-        $musicPlayer->addListener(new MusicListener($this->visitor, $club)); // re-visit after changing track
-
         $club->usePlaylist($this->configuration->playlist);
 
         foreach ($this->configuration->initialVisitors as $visitor) {
@@ -58,6 +56,7 @@ final class Emulator
             }
         }
 
+        $musicPlayer->addListener(new MusicListener($this->visitor, $club)); // re-visit after changing track
         $club->accept($this->visitor);
         $club->playMusic();
     }
