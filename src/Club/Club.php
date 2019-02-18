@@ -30,7 +30,7 @@ interface Club extends Visitable
     public function usePlaylist(Playlist $playlist): void;
 
     /**
-     * Play music in the club. Throws NoMusicLoadedException if there are no music was loaded.
+     * Play music in the club.
      */
     public function playMusic(): void;
 
