@@ -29,12 +29,12 @@ class GenericMusicPlayerTest extends TestCase
                 null
             );
 
-        $player = new GenericMusicPlayer($playlist, $playingStrategy);
+        $player = new GenericMusicPlayer($playingStrategy);
 
-        $player->startPlaying();
+        $player->startPlaying($playlist);
     }
 
-    public function testStartPlayingShouldNotifyListeners()
+    public function testStartPlayingShouldNotifyListeners(): void
     {
         $playlist = new Playlist();
         $current = new Composition('some song', Genre::popMusic());
@@ -52,11 +52,11 @@ class GenericMusicPlayerTest extends TestCase
             ->method('updateListeningComposition')
             ->with(self::identicalTo($current));
 
-        $player = new GenericMusicPlayer($playlist, $playingStrategy);
+        $player = new GenericMusicPlayer($playingStrategy);
 
         $player->addListener($listener1);
         $player->addListener($listener2);
 
-        $player->startPlaying();
+        $player->startPlaying($playlist);
     }
 }

@@ -5,6 +5,7 @@ namespace Club\Club\Generic;
 use Club\Club\Club;
 use Club\Club\Generic\FaceControl\FaceControlStrategy;
 use Club\Infrastructure\Visitor;
+use Club\Music\Playlist;
 use Club\MusicPlayer\MusicPlayer;
 use Club\Club\NoEntryException;
 use Club\Persons\Person;
@@ -24,6 +25,11 @@ final class GenericClub implements Club
      * @var MusicPlayer
      */
     private $musicPlayer;
+
+    /**
+     * @var Playlist
+     */
+    private $playlist;
 
     /**
      * @var SplObjectStorage
@@ -62,9 +68,17 @@ final class GenericClub implements Club
     /**
      * @inheritDoc
      */
+    public function usePlaylist(Playlist $playlist): void
+    {
+        $this->playlist = $playlist;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function playMusic(): void
     {
-        $this->musicPlayer->startPlaying();
+        $this->musicPlayer->startPlaying($this->playlist);
     }
 
     /**

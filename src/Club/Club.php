@@ -3,6 +3,7 @@
 namespace Club\Club;
 
 use Club\Infrastructure\Visitable;
+use Club\Music\Playlist;
 use Club\MusicPlayer\MusicPlayer;
 use Club\Persons\Person;
 
@@ -20,6 +21,13 @@ interface Club extends Visitable
      * @throws NoEntryException
      */
     public function letPersonIn(Person $person): void;
+
+    /**
+     * @param Playlist $playlist
+     *
+     * @return void
+     */
+    public function usePlaylist(Playlist $playlist): void;
 
     /**
      * Play music in the club. Throws NoMusicLoadedException if there are no music was loaded.

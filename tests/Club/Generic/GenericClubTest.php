@@ -4,6 +4,7 @@ namespace tests\Club\Generic;
 
 use Club\Club\Generic\FaceControl\FaceControlStrategy;
 use Club\Club\Generic\GenericClub;
+use Club\Music\Playlist;
 use Club\MusicPlayer\MusicPlayer;
 use Club\Club\NoEntryException;
 use Club\Persons\DanceStylesCollection;
@@ -62,11 +63,15 @@ class GenericClubTest extends TestCase
     {
         $faceControl = $this->createMock(FaceControlStrategy::class);
 
+        $playlist = new Playlist();
+
         $musicPlayer = $this->createMock(MusicPlayer::class);
         $musicPlayer->expects(self::once())
-            ->method('startPlaying');
+            ->method('startPlaying')
+            ->with(self::identicalTo($playlist));
 
         $club = new GenericClub($faceControl, $musicPlayer);
+        $club->usePlaylist($playlist);
 
         $club->playMusic();
     }

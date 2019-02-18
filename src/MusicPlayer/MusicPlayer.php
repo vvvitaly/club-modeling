@@ -4,6 +4,7 @@ namespace Club\MusicPlayer;
 
 use Club\Infrastructure\Visitable;
 use Club\Music\Composition;
+use Club\Music\Playlist;
 
 /**
  * Club music player
@@ -12,8 +13,10 @@ interface MusicPlayer extends Visitable
 {
     /**
      * Start music playing
+     *
+     * @param Playlist $playlist
      */
-    public function startPlaying(): void;
+    public function startPlaying(Playlist $playlist): void;
 
     /**
      * Get current playing composition

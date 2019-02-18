@@ -14,11 +14,6 @@ use SplObjectStorage;
 final class GenericMusicPlayer implements MusicPlayer
 {
     /**
-     * @var Playlist
-     */
-    private $playlist;
-
-    /**
      * @var PlayingStrategy
      */
     private $playingStrategy;
@@ -36,12 +31,10 @@ final class GenericMusicPlayer implements MusicPlayer
     /**
      * GenericMusicPlayer constructor.
      *
-     * @param Playlist $playlist
      * @param PlayingStrategy $playingStrategy
      */
-    public function __construct(Playlist $playlist, PlayingStrategy $playingStrategy)
+    public function __construct(PlayingStrategy $playingStrategy)
     {
-        $this->playlist = $playlist;
         $this->playingStrategy = $playingStrategy;
         $this->listeners = new SplObjectStorage();
     }
@@ -49,10 +42,10 @@ final class GenericMusicPlayer implements MusicPlayer
     /**
      * @inheritDoc
      */
-    public function startPlaying(): void
+    public function startPlaying(Playlist $playlist): void
     {
         do {
-            $this->currentComposition = $this->playingStrategy->playComposition($this->playlist);
+            $this->currentComposition = $this->playingStrategy->playComposition($playlist);
             if ($this->currentComposition) {
                 $this->notifyListeners($this->currentComposition);
             }
