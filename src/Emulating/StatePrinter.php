@@ -140,7 +140,8 @@ class StatePrinter implements Visitor
         }
 
         if ($personState instanceof DrinkingState) {
-            $this->cli->out('<whisper>ушел в бар пить водку</whisper>');
+            $verb = $personState->getPerson()->getGender()->isMale() ? 'ушел' : 'ушла';
+            $this->cli->out("<whisper>{$verb} в бар пить водку</whisper>");
 
             return ;
         }

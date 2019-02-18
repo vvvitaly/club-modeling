@@ -2,12 +2,22 @@
 
 namespace Club\Persons\States;
 
-use Club\Infrastructure\Visitor;
+use Club\Persons\Person;
 
 /**
  * Go to the bar and drink vodka
  */
 class DrinkingState implements PersonState
 {
-    use VisitableTrait;
+    use VisitableTrait, PersonAwareTrait;
+
+    /**
+     * DrinkingState constructor.
+     *
+     * @param Person $person
+     */
+    public function __construct(Person $person)
+    {
+        $this->setPerson($person);
+    }
 }

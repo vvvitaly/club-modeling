@@ -3,13 +3,14 @@
 namespace Club\Persons\States;
 
 use Club\Dances\Styles\DanceStyle;
+use Club\Persons\Person;
 
 /**
  * Dance
  */
 class DancingState implements PersonState
 {
-    use VisitableTrait;
+    use VisitableTrait, PersonAwareTrait;
 
     /**
      * @var DanceStyle
@@ -21,8 +22,9 @@ class DancingState implements PersonState
      *
      * @param DanceStyle $danceStyle
      */
-    public function __construct(DanceStyle $danceStyle)
+    public function __construct(Person $person, DanceStyle $danceStyle)
     {
+        $this->setPerson($person);
         $this->danceStyle = $danceStyle;
     }
 

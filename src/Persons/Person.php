@@ -49,7 +49,7 @@ final class Person implements MusicListener, Visitable
         $this->gender = $gender;
         $this->dances = $dances;
 
-        $this->state = new WaitingState();
+        $this->state = new WaitingState($this);
     }
 
     /**
@@ -83,9 +83,9 @@ final class Person implements MusicListener, Visitable
     {
         $dance = $this->dances->getDanceForMusic($composition->getGenre());
         if ($dance) {
-            $this->state = new DancingState($dance);
+            $this->state = new DancingState($this, $dance);
         } else {
-            $this->state = new DrinkingState();
+            $this->state = new DrinkingState($this);
         }
     }
 
