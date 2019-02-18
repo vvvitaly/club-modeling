@@ -27,12 +27,18 @@ use Club\Persons\States\DancingState;
 use Club\Persons\States\DrinkingState;
 use Club\Persons\States\PersonState;
 use Club\Persons\States\WaitingState;
+use League\CLImate\CLImate;
 
 /**
  * Class StatePrinter
  */
 class StatePrinter implements Visitor
 {
+    /**
+     * @var CLImate
+     */
+    private $cli;
+
     /**
      * @var array
      */
@@ -54,18 +60,29 @@ class StatePrinter implements Visitor
     private static $movements;
 
     /**
+     * StatePrinter constructor.
+     *
+     * @param CLImate $cli
+     */
+    public function __construct(CLImate $cli)
+    {
+        $this->cli = $cli;
+    }
+
+    /**
      * @inheritDoc
      */
     public function visitClub(Club $club): void
     {
         $persons = $club->getPersons();
 
-        echo 'Сейчас в клубе ' . iterator_count($persons) . ' человек(а)';
+        $this->cli->inline('Сейчас в клубе <bold>' . iterator_count($persons) . '</bold> человек(а)');
 
         $this->visitMusicPlayer($club->getMusicPlayer());
         foreach ($persons as $person) {
             $this->visitPerson($person);
         }
+        $this->cli->out('');
     }
 
     /**
@@ -81,9 +98,9 @@ class StatePrinter implements Visitor
 
         if ($currentMusic) {
             $genre = self::getGenreText($currentMusic->getGenre());
-            echo ', играет: ' . $currentMusic->getTitle() . " ({$genre})" . PHP_EOL;
+            $this->cli->out(', играет: <green>' . $currentMusic->getTitle() . "</green> (<bold>{$genre}</bold>)");
         } else {
-            echo ', пока что тихо...' . PHP_EOL;
+            $this->cli->out(', <whisper>пока что тихо...</whisper>');
         }
     }
 
@@ -92,9 +109,22 @@ class StatePrinter implements Visitor
      */
     public function visitPerson(Person $person): void
     {
-        $gender = $person->getGender()->isMale() ? 'мальчик' : 'девочка';
+        $this->cli->inline("   <bold>{$person->getId()->getName()}</bold>");
+        if ($person->getState() instanceof WaitingState) {
+            $gender = $person->getGender()->isMale() ? '<light_blue>♂</light_blue>' : '<light_red>♀</light_red>';
 
-        echo "   Посетитель {$person->getId()->getName()} ({$gender}) ";
+            $dances = $person->getDancesStyles()->toArray();
+            $dances = array_map(
+                function (DanceStyle $style) {
+                    return self::getDanceText($style);
+                },
+                $dances
+            );
+            $dances = implode(',', $dances);
+
+            $this->cli->inline("({$gender}, может танцевать <dim>{$dances}</dim>)");
+        }
+        $this->cli->inline(' ');
         $this->visitPersonState($person->getState());
     }
 
@@ -104,13 +134,13 @@ class StatePrinter implements Visitor
     public function visitPersonState(PersonState $personState): void
     {
         if ($personState instanceof WaitingState) {
-            echo 'ждет...' . PHP_EOL;
+            $this->cli->out('<whisper>ждет...</whisper>');
 
             return ;
         }
 
         if ($personState instanceof DrinkingState) {
-            echo 'ушел в бар пить водку' . PHP_EOL;
+            $this->cli->out('<whisper>ушел в бар пить водку</whisper>');
 
             return ;
         }
@@ -119,11 +149,11 @@ class StatePrinter implements Visitor
             $dance = $personState->getDanceStyle();
             $danceName = self::getDanceText($dance);
 
-            echo "танцует {$danceName}: ";
+            $this->cli->inline("танцует <bold>{$danceName}</bold>: ");
             foreach ($dance->getMovementsSequence()->toArray() as $movement) {
                 $this->visitDancingMovement($movement);
             }
-            echo PHP_EOL;
+            $this->cli->out('');
         }
     }
 
@@ -135,7 +165,7 @@ class StatePrinter implements Visitor
         $bodyPart = self::getBodyPartName($movement->getBodyPart());
         $movement = self::getMovementName($movement->getMovement());
 
-        echo $bodyPart . ' - ' . $movement . '; ';
+        $this->cli->inline("<underline>{$bodyPart}</underline> - {$movement}; ");
     }
 
     /**

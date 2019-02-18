@@ -69,6 +69,14 @@ final class Person implements MusicListener, Visitable
     }
 
     /**
+     * @return DanceStylesCollection
+     */
+    public function getDancesStyles(): DanceStylesCollection
+    {
+        return $this->dances;
+    }
+
+    /**
      * @inheritDoc
      */
     public function updateListeningComposition(Composition $composition): void

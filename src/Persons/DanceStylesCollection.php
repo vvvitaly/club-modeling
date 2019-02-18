@@ -26,6 +26,14 @@ final class DanceStylesCollection
     }
 
     /**
+     * @return DanceStyle[]
+     */
+    public function toArray(): array
+    {
+        return $this->styles;
+    }
+
+    /**
      * Get the corresponding dance style for the given music genre
      *
      * @param Genre $genre
