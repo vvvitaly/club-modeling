@@ -33,6 +33,7 @@ class RandomStrategy implements FaceControlStrategy
 
     /**
      * @inheritDoc
+     * @throws \Exception
      */
     public function canLetPersonIn(Person $person): bool
     {

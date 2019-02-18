@@ -2,10 +2,8 @@
 
 namespace Club\Emulating;
 
-use Amp\Loop;
 use Club\Club\Club;
 use Club\Club\Generic\FaceControl\AllowAllStrategy;
-use Club\Club\Generic\FaceControl\CapacityStrategy;
 use Club\Club\Generic\GenericClub;
 use Club\Club\NoEntryException;
 use Club\Infrastructure\Visitor;
@@ -41,7 +39,10 @@ final class Emulator
         $this->visitor = $visitor;
     }
 
-    public function run()
+    /**
+     * Run emulation
+     */
+    public function run(): void
     {
         $musicPlayer = $this->createMusicPlayer();
         $club = $this->createClub($musicPlayer);

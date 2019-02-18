@@ -2,8 +2,6 @@
 
 namespace Club\Dances\Movements;
 
-use Club\Dances\Movements\BodyPart;
-
 /**
  * Movement in rhythm
  */

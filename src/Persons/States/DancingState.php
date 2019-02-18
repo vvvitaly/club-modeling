@@ -20,6 +20,7 @@ class DancingState implements PersonState
     /**
      * DancingState constructor.
      *
+     * @param Person $person
      * @param DanceStyle $danceStyle
      */
     public function __construct(Person $person, DanceStyle $danceStyle)

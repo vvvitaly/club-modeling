@@ -64,7 +64,12 @@ class DanceStylesCollectionTest extends TestCase
              */
             public function getMovementsSequence(): MovementsSequence
             {
-                return new class implements MovementsSequence {
+                return new class extends MovementsSequence
+                {
+
+                    /**
+                     * @return array
+                     */
                     public function toArray(): array
                     {
                         return [];

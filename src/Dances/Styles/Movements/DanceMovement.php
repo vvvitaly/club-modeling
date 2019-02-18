@@ -25,7 +25,7 @@ final class DanceMovement implements Visitable
     /**
      * DanceMovement constructor.
      *
-     * @param \Club\Dances\Movements\BodyPart $bodyPart
+     * @param BodyPart $bodyPart
      * @param Movement $movement
      */
     public function __construct(BodyPart $bodyPart, Movement $movement)
