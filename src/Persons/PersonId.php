@@ -13,8 +13,6 @@ final class PersonId
     private $name;
 
     /**
-     * PersonId constructor.
-     *
      * @param string $name
      */
     public function __construct(string $name)

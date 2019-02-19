@@ -16,8 +16,6 @@ final class Gender
     private $gender;
 
     /**
-     * Gender constructor.
-     *
      * @param string $gender
      */
     private function __construct(string $gender)

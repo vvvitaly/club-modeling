@@ -13,8 +13,6 @@ class MovementsSequence
     private $movements;
 
     /**
-     * MovementsCollection constructor.
-     *
      * @param DanceMovement ...$danceMovements
      */
     public function __construct(DanceMovement ...$danceMovements)

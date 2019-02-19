@@ -27,8 +27,6 @@ class EmulatingPlayingTrackStrategy implements PlayingStrategy
     private $isFirstTrack = true;
 
     /**
-     * EmulatingPlayingTrackStrategy constructor.
-     *
      * @param PlayingStrategy $wrapped
      * @param int $duration
      */

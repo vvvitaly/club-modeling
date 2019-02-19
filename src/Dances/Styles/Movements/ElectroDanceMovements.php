@@ -2,9 +2,9 @@
 
 namespace Club\Dances\Styles\Movements;
 
-use Club\Dances\Movements\BodyPart;
 use Club\Dances\Movements\BackAndForthWiggle;
 use Club\Dances\Movements\BarelyMoving;
+use Club\Dances\Movements\BodyPart;
 use Club\Dances\Movements\RhythmMovement;
 use Club\Dances\Movements\Rotating;
 
@@ -13,9 +13,6 @@ use Club\Dances\Movements\Rotating;
  */
 final class ElectroDanceMovements extends MovementsSequence
 {
-    /**
-     * ElectroDanceMovements constructor.
-     */
     public function __construct()
     {
         parent::__construct(

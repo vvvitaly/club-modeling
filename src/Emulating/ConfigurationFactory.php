@@ -88,8 +88,6 @@ final class ConfigurationFactory
     private $dances;
 
     /**
-     * ConfigurationFactory constructor.
-     *
      * @param array $config
      * @param Generator $faker
      */

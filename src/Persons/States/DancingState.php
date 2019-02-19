@@ -18,8 +18,6 @@ class DancingState implements PersonState
     private $danceStyle;
 
     /**
-     * DancingState constructor.
-     *
      * @param Person $person
      * @param DanceStyle $danceStyle
      */

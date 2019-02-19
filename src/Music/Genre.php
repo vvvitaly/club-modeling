@@ -17,8 +17,6 @@ final class Genre
     private $name;
 
     /**
-     * Genre constructor.
-     *
      * @param string $name
      */
     private function __construct(string $name)

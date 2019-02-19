@@ -16,9 +16,6 @@ final class ElectroDance implements DanceStyle
      */
     private $movements;
 
-    /**
-     * ElectroDance constructor.
-     */
     public function __construct()
     {
         $this->movements = new LazyMovementsSequence($this);

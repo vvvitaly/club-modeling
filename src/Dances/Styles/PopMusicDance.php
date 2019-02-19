@@ -16,9 +16,6 @@ final class PopMusicDance implements DanceStyle
      */
     private $movements;
 
-    /**
-     * PopMusicDance constructor.
-     */
     public function __construct()
     {
         $this->movements = new LazyMovementsSequence($this);

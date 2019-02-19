@@ -28,8 +28,6 @@ final class Emulator
     private $visitor;
 
     /**
-     * Emulator constructor.
-     *
      * @param EmulatingConfiguration $configuration
      * @param Visitor $visitor
      */

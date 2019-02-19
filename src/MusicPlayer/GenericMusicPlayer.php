@@ -3,13 +3,14 @@
 namespace Club\MusicPlayer;
 
 use Club\Infrastructure\Visitor;
-use Club\MusicPlayer\PlayingStrategy\PlayingStrategy;
 use Club\Music\Composition;
 use Club\Music\Playlist;
+use Club\MusicPlayer\PlayingStrategy\PlayingStrategy;
 use SplObjectStorage;
 
 /**
- * Class GenericMusicPlayer
+ * Generic implementation of music player which "plays" some music from the playlist based on playing strategy.
+ * This implementation also supports notifying listeners about music changes.
  */
 final class GenericMusicPlayer implements MusicPlayer
 {
@@ -29,8 +30,6 @@ final class GenericMusicPlayer implements MusicPlayer
     private $listeners;
 
     /**
-     * GenericMusicPlayer constructor.
-     *
      * @param PlayingStrategy $playingStrategy
      */
     public function __construct(PlayingStrategy $playingStrategy)

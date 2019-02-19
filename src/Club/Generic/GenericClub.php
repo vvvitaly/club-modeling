@@ -4,15 +4,15 @@ namespace Club\Club\Generic;
 
 use Club\Club\Club;
 use Club\Club\Generic\FaceControl\FaceControlStrategy;
+use Club\Club\NoEntryException;
 use Club\Infrastructure\Visitor;
 use Club\Music\Playlist;
 use Club\MusicPlayer\MusicPlayer;
-use Club\Club\NoEntryException;
 use Club\Persons\Person;
 use SplObjectStorage;
 
 /**
- * Class GenericClub
+ * Generic implementation of club. It contains some face control strategy, some visitors and music player implementation.
  */
 final class GenericClub implements Club
 {
@@ -37,8 +37,6 @@ final class GenericClub implements Club
     private $visitors;
 
     /**
-     * GenericClub constructor.
-     *
      * @param FaceControlStrategy $faceControlStrategy
      * @param MusicPlayer $musicPlayer
      */

@@ -6,9 +6,6 @@ use Club\Music\Composition;
 use Club\Music\Genre;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class CompositionTest
- */
 class CompositionTest extends TestCase
 {
     public function testCreation(): void

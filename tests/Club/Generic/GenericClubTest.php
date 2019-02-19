@@ -4,18 +4,15 @@ namespace tests\Club\Generic;
 
 use Club\Club\Generic\FaceControl\FaceControlStrategy;
 use Club\Club\Generic\GenericClub;
+use Club\Club\NoEntryException;
 use Club\Music\Playlist;
 use Club\MusicPlayer\MusicPlayer;
-use Club\Club\NoEntryException;
 use Club\Persons\DanceStylesCollection;
 use Club\Persons\Gender;
 use Club\Persons\Person;
 use Club\Persons\PersonId;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class GenericClubTest
- */
 class GenericClubTest extends TestCase
 {
     public function testLetPersonIn(): void

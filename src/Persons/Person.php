@@ -37,8 +37,6 @@ final class Person implements MusicListener, Visitable
     private $dances;
 
     /**
-     * Person constructor.
-     *
      * @param PersonId $id
      * @param Gender $gender
      * @param DanceStylesCollection $dances

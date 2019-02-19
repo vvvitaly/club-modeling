@@ -30,7 +30,7 @@ use Club\Persons\States\WaitingState;
 use League\CLImate\CLImate;
 
 /**
- * Class StatePrinter
+ * Implementation of visitor pattern that prints in console current state of club (music, visitors, etc.).
  */
 class StatePrinter implements Visitor
 {
@@ -60,8 +60,6 @@ class StatePrinter implements Visitor
     private static $movements;
 
     /**
-     * StatePrinter constructor.
-     *
      * @param CLImate $cli
      */
     public function __construct(CLImate $cli)

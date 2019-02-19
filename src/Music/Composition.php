@@ -18,8 +18,6 @@ class Composition
     private $genre;
 
     /**
-     * Composition constructor.
-     *
      * @param string $title
      * @param Genre $genre
      */

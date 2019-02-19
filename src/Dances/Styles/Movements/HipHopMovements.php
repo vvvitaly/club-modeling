@@ -2,8 +2,8 @@
 
 namespace Club\Dances\Styles\Movements;
 
-use Club\Dances\Movements\BodyPart;
 use Club\Dances\Movements\BackAndForthWiggle;
+use Club\Dances\Movements\BodyPart;
 use Club\Dances\Movements\HalfBentLimbs;
 
 /**
@@ -11,9 +11,6 @@ use Club\Dances\Movements\HalfBentLimbs;
  */
 final class HipHopMovements extends MovementsSequence
 {
-    /**
-     * HipHopMovements constructor.
-     */
     public function __construct()
     {
         parent::__construct(

@@ -7,7 +7,7 @@ use Club\Dances\Styles\DanceStyle;
 /**
  * Load movements via MovementsFactory
  */
-class LazyMovementsSequence extends MovementsSequence
+final class LazyMovementsSequence extends MovementsSequence
 {
     /**
      * @var DanceStyle
@@ -15,8 +15,6 @@ class LazyMovementsSequence extends MovementsSequence
     private $dance;
 
     /**
-     * LazyMovementsSequence constructor.
-     *
      * @param DanceStyle $dance
      */
     public function __construct(DanceStyle $dance)

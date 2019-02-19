@@ -8,10 +8,6 @@ use Club\Music\Genre;
 use Club\Persons\DanceStylesCollection;
 use PHPUnit\Framework\TestCase;
 
-
-/**
- * Class StylesCollectionTest
- */
 class DanceStylesCollectionTest extends TestCase
 {
     public function testGetStyleForMusic(): void

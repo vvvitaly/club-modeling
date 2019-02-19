@@ -16,9 +16,6 @@ final class Rnb implements DanceStyle
      */
     private $movements;
 
-    /**
-     * Rnb constructor.
-     */
     public function __construct()
     {
         $this->movements = new LazyMovementsSequence($this);

@@ -2,17 +2,14 @@
 
 namespace tests\MusicPlayer;
 
-use Club\MusicPlayer\GenericMusicPlayer;
-use Club\MusicPlayer\MusicListener;
-use Club\MusicPlayer\PlayingStrategy\PlayingStrategy;
 use Club\Music\Composition;
 use Club\Music\Genre;
 use Club\Music\Playlist;
+use Club\MusicPlayer\GenericMusicPlayer;
+use Club\MusicPlayer\MusicListener;
+use Club\MusicPlayer\PlayingStrategy\PlayingStrategy;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class GenericMusicPlayerTest
- */
 class GenericMusicPlayerTest extends TestCase
 {
     public function testStartPlaying(): void

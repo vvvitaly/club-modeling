@@ -16,10 +16,7 @@ class RandomStrategy implements FaceControlStrategy
     private $enterChance;
 
     /**
-     * RandomStrategy constructor.
-     *
      * @param int $enterChance
-     *
      * @throws InvalidArgumentException
      */
     public function __construct(int $enterChance)

@@ -18,8 +18,6 @@ final class BodyPart
     private $partName;
 
     /**
-     * BodyPart constructor.
-     *
      * @param string $partName
      */
     private function __construct(string $partName)

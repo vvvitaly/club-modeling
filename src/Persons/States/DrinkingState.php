@@ -12,8 +12,6 @@ class DrinkingState implements PersonState
     use VisitableTrait, PersonAwareTrait;
 
     /**
-     * DrinkingState constructor.
-     *
      * @param Person $person
      */
     public function __construct(Person $person)

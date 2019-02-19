@@ -6,7 +6,7 @@ use Club\Music\Composition;
 use Club\Music\Playlist;
 
 /**
- * Class LimitPlaysCount
+ * Playing strategy that denies playing music more then specified number of times.
  */
 class LimitPlaysCount implements PlayingStrategy
 {
@@ -26,8 +26,6 @@ class LimitPlaysCount implements PlayingStrategy
     private $playsCount = 0;
 
     /**
-     * LimitPlaysCount constructor.
-     *
      * @param PlayingStrategy $playingStrategy
      * @param int $playsLimit total plays limit
      */

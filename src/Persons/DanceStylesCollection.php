@@ -16,8 +16,6 @@ final class DanceStylesCollection
     private $styles;
 
     /**
-     * StylesCollection constructor.
-     *
      * @param DanceStyle ...$styles
      */
     public function __construct(DanceStyle ...$styles)

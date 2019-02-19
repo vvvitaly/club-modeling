@@ -13,9 +13,6 @@ use Club\Persons\States\DancingState;
 use Club\Persons\States\DrinkingState;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class PersonTest
- */
 class PersonTest extends TestCase
 {
     public function testUpdateListeningCompositionShouldChangeToDancingState(): void

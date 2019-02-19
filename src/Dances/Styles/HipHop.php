@@ -16,9 +16,6 @@ final class HipHop implements DanceStyle
      */
     private $movements;
 
-    /**
-     * HipHop constructor.
-     */
     public function __construct()
     {
         $this->movements = new LazyMovementsSequence($this);

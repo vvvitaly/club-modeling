@@ -23,8 +23,6 @@ final class DanceMovement implements Visitable
     private $movement;
 
     /**
-     * DanceMovement constructor.
-     *
      * @param BodyPart $bodyPart
      * @param Movement $movement
      */

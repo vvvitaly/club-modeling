@@ -22,8 +22,6 @@ class MusicListener implements \Club\MusicPlayer\MusicListener
     private $club;
 
     /**
-     * MusicListener constructor.
-     *
      * @param Visitor $visitor
      * @param Club $club
      */
